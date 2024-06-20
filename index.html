@@ -1,0 +1,495 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+
+        /* Body Styles */
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            background-color: #f0f0f0;
+            color: #333;
+            scroll-behavior: smooth;
+        }
+
+        /* Header and Navigation */
+        header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: #fff;
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background 0.5s ease-in-out;
+        }
+
+        header nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        header nav ul li {
+            margin: 0 20px;
+        }
+
+        header nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        header nav ul li a:hover {
+            color: #ffd700; /* Gold color */
+        }
+
+        header.scrolled {
+            background: rgba(52, 152, 219, 0.9);
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            font-size: 30px;
+            color: #fff;
+        }
+
+        /* Hero Section */
+        #hero {
+            text-align: center;
+            padding: 150px 20px;
+            background: linear-gradient(135deg, #2c3e50, #3498db), url('images/hero-bg.jpg') no-repeat center center/cover;
+            color: #fff;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+        }
+
+        #hero h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            position: relative;
+            z-index: 1;
+            animation: slideInDown 1s ease-in-out;
+        }
+
+        #hero p {
+            font-size: 24px;
+            position: relative;
+            z-index: 1;
+            animation: slideInUp 1.5s ease-in-out;
+        }
+
+
+        #about {
+            text-align: justify;
+            font-size: 18px;
+            color: #666;
+            margin-top: 100px;
+            margin-bottom: 100px;
+            line-height: 1.5;
+            padding: 100px; 
+            height: 350px;
+        }
+        
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 60px 20px;
+            max-width: 1200px;
+            margin: 80px auto;
+            background: #fff;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 36px;
+            color: #333;
+        }
+
+
+        /* Project Styles */
+        #projects {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 20px;
+        }
+
+        .project {
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .project img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .project h3 {
+            margin: 10px 0;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .project p {
+            font-size: 16px;
+            color: #666;
+        }
+
+        .project:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+
+        #skills {
+            text-align: center;
+            margin: 40px auto;
+        }
+
+        #skills h2 {
+            font-size: 36px;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .skills-row {
+            display: flex;
+            justify-content: left;
+            gap: 310px;
+            margin-bottom: 20px;
+        }
+
+        .skill {
+            background: #f9f9f9;
+            padding: 25px;
+            width: 150px; /* Adjusted width */
+            margin: 10px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .skill:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill i {
+            font-size: 40px;
+            margin-bottom: 10px;
+            color: #667eea;
+        }
+
+        .skill h4 {
+            margin: 10px 0;
+            font-size: 20px;
+            color: #333;
+        }
+
+
+        /* Contact Section */
+        #contact {
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #contact p {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        #contact a {
+            color: #ffd700; /* Gold color */
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s ease;
+        }
+
+        #contact a:hover {
+            text-decoration: underline;
+            color: #f5f5f5; /* Lighter gold on hover */
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: #fff;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header nav ul {
+                flex-direction: column;
+                background: rgba(0, 0, 0, 0.8);
+                position: absolute;
+                top: 60px;
+                right: 0;
+                width: 200px;
+                display: none;
+            }
+
+            header nav ul li {
+                margin: 20px 0;
+            }
+
+            header nav ul li a {
+                font-size: 20px;
+            }
+
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                top: 15px;
+                right: 20px;
+                font-size: 30px;
+                cursor: pointer;
+                color: #fff;
+            }
+
+            .active {
+                display: flex;
+                flex-direction: column;
+            }
+
+            #hero {
+                padding: 100px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="menu-toggle" onclick="toggleMenu()">☰</div>
+        <nav>
+            <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+
+    <section id="hero">
+        <h1>Welcome to My Portfolio</h1>
+        <p>Hey there! I'm Daksh. I create awesome web experiences.</p>
+    </section>
+
+    <section id="about" class="fade-in">
+        <h2>About Me</h2>
+        <p>I am a second year undergraduate pursuing Computer Science at IIIT Bangalore. My academic interests include development and data structures and algorithms. In my freetime, I play basketball and hang out with my friends.</p>
+    </section>
+
+
+    <section id="skills">
+        <h2>Skills</h2>
+        <div class="skills-row">
+            <div class="skill">
+                <i class="fab fa-html5"></i>
+                <h4>HTML5</h4>
+            </div>
+            <div class="skill">
+                <i class="fab fa-css3-alt"></i>
+                <h4>CSS3</h4>
+            </div>
+            <div class="skill">
+                <i class="fab fa-js"></i>
+                <h4>JavaScript</h4>
+            </div>
+        </div>
+        <div class="skills-row">
+            <div id="C" class="skill">
+                <i class="fas fa-c"></i>
+                <h4>C</h4>
+            </div>
+            <div class="skill">
+                <i class="fab fa-java"></i>
+                <h4>Java</h4>
+            </div>
+        </div>
+    </section>
+    
+    
+
+
+    <section id="projects" class="slide-in">
+        <h2>Projects</h2>
+        <div class="project">
+            <img src="https://media.istockphoto.com/id/1695688640/photo/luxury-home-gym-in-a-spacious-detached-house.jpg?s=1024x1024&w=is&k=20&c=HqGpT0TSK-XkBtAzBFpxnddYRmncsLkA-DeKUVSQ-fs=" alt="Project 1">
+            <h3>SWC Hackstack Project 1</h3>
+            <p>Gym website created using HTML and CSS</p>
+            <a href="https://github.com/DKRJ13/gym-website">GYM</a>
+        </div>
+        <div class="project">
+            <img src="https://editor.analyticsvidhya.com/uploads/66982lms.jpg" alt="Project 2">
+            <h3>Library Management System</h3>
+            <p>Beginner C project which creates LMS using structs and file/IO</p>
+            <a href="https://github.com/the-aryanmishra/c-project-library-management">LMS</a>
+        </div>
+        <!-- Add more projects as needed -->
+    </section>
+
+
+
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:dakshrajesh04@gmail.com">dakshrajesh04@gmail.com</a></p>
+        <p>LinkedIn: <a href="https://www.linkedin.com/in/daksh-rajesh-a89881259?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" target="_blank">LinkedIn Profile</a></p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Your Name. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // JavaScript for Sticky Header
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // JavaScript for Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // JavaScript for Scroll Animation
+        const faders = document.querySelectorAll('.fade-in');
+        const sliders = document.querySelectorAll('.slide-in');
+
+        const appearOptions = {
+            threshold: 0,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const appearOnScroll = new IntersectionObserver((entries, appearOnScroll) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) {
+                    return;
+                } else {
+                    entry.target.classList.add('appear');
+                    appearOnScroll.unobserve(entry.target);
+                }
+            });
+        }, appearOptions);
+
+        faders.forEach(fader => {
+            appearOnScroll.observe(fader);
+        });
+
+        sliders.forEach(slider => {
+            appearOnScroll.observe(slider);
+        });
+
+        // Toggle Menu for Mobile View
+        function toggleMenu() {
+            const nav = document.querySelector('header nav ul');
+            nav.classList.toggle('active');
+        }
+    </script>
+</body>
+</html>
